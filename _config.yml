@@ -6,11 +6,11 @@
 # `jekyll serve`. If you change this file, please restart the server process.
 
 # Site Settings
-locale                   : "en"
-title                    : "Site Title"
+locale                   : "zh"
+title                    : "≈正念≈"
 title_separator          : "-"
-name                     : "Your Name"
-description              : "An amazing website."
+name                     : "≈正念≈"
+description              : "热爱生活，热爱技术"
 url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -58,7 +58,6 @@ twitter:
   username               :
 facebook:
   username               :
-  app_id                 :
   publisher              :
 og_image                 : # Open Graph/Twitter default site image
 # For specifying social profiles
@@ -77,10 +76,10 @@ analytics:
 
 # Site Author
 author:
-  name             : "Your Name"
+  name             : "Joshua Nie"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I am an amazing person."
-  location         : "Somewhere"
+  bio              : "一个见习架构师。"
+  location         : "China Beijing"
   email            :
   uri              :
   bitbucket        :
@@ -89,7 +88,7 @@ author:
   flickr           :
   facebook         :
   foursquare       :
-  github           :
+  github           : "nxy105"
   google_plus      :
   keybase          :
   instagram        :
@@ -240,7 +239,7 @@ defaults:
     values:
       layout: single
       author_profile: true
-      read_time: true
+      read_time: false
       comments: # true
-      share: true
+      share: false
       related: true
