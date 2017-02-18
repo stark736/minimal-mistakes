@@ -77,8 +77,8 @@ analytics:
 # Site Author
 author:
   name             : "Joshua Nie"
-  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "一个见习架构师。"
+  avatar           : "/assets/images/avatar.jpeg"
+  bio              : "见习架构师一名。"
   location         : "China Beijing"
   email            :
   uri              :

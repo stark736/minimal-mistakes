@@ -91,6 +91,7 @@ struct _zend_class_entry {
 因此，接口和 traits 的开销与类差不多，我们可以通过以下的方式来验证：
 
 ```php
+<?php
 $class = <<<'CL'
 interface Bar { }
 CL;

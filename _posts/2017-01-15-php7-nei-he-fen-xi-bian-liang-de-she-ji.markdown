@@ -156,6 +156,7 @@ zval1.u1.v.reserved = zval2.u1.v.reserved
 通常的变量，根据写时拷贝的原则，当变量发生改变之前，我们会将指向相同值的变量拷贝分离。但对于引用类型来说，这样做肯定是不正确的，因为我们希望引用同一个值的变量同时发生改变。在 PHP5 的内核中，通过 `is_ref` 标志位表示一个变量是否是一个引用类型，通过下面的例子，我们可以看到引用在 PHP5 中是如何工作的：
 
 ```php
+<?php
 $a = [];  // $a     -> zval_1(type=IS_ARRAY, refcount=1, is_ref=0) -> HashTable_1(value=[])
 $b =& $a; // $a, $b -> zval_1(type=IS_ARRAY, refcount=2, is_ref=1) -> HashTable_1(value=[])
 
@@ -165,6 +166,7 @@ $b[] = 1; // $a = $b = zval_1(type=IS_ARRAY, refcount=2, is_ref=1) -> HashTable_
 这样设计最大的问题在于，没有办法把同一个数据在引用和非引用的变量上共享。
 
 ```php
+<?php
 $a = [];  // $a         -> zval_1(type=IS_ARRAY, refcount=1, is_ref=0) -> HashTable_1(value=[])
 $b = $a;  // $a, $b     -> zval_1(type=IS_ARRAY, refcount=2, is_ref=0) -> HashTable_1(value=[])
 $c = $b   // $a, $b, $c -> zval_1(type=IS_ARRAY, refcount=3, is_ref=0) -> HashTable_1(value=[])
@@ -186,6 +188,7 @@ struct _zend_reference {
 之前的简单例子在 PHP7 下是这样工作的：
 
 ```php
+<?php
 $a = [];  // $a                                     -> zend_array_1(refcount=1, value=[])
 $b =& $a; // $a, $b -> zend_reference_1(refcount=2) -> zend_array_1(refcount=1, value=[])
 
@@ -195,6 +198,7 @@ $b[] = 1; // $a, $b -> zend_reference_1(refcount=2) -> zend_array_1(refcount=1, 
 我们再来看看同一个数据在引用和非引用变量之间是如何做到共享的：
 
 ```php
+<?php
 $a = [];  // $a         -> zend_array_1(refcount=1, value=[])
 $b = $a;  // $a, $b,    -> zend_array_1(refcount=2, value=[])
 $c = $b   // $a, $b, $c -> zend_array_1(refcount=3, value=[])

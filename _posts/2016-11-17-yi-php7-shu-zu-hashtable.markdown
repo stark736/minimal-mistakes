@@ -66,7 +66,7 @@ typedef struct _Bucket {
 
 下面是 `arData` 在内存中存储的结构：
 
-![alt](/content/images/2016/11/hash1.png)
+![alt](/assets/images/hash1.png)
 
 我们注意到所有的Bucket都是按顺序存放的。
 
@@ -75,6 +75,7 @@ typedef struct _Bucket {
 PHP 会保证数组的元素按照插入的顺序存储。这样当使用 `foreach` 循环数组时，能够按照插入的顺序遍历。假设我们有这样的数组：
 
 ```php
+<?php
 $a = [9 => "foo", 2 => 42, []];
 var_dump($a);
 
@@ -91,7 +92,7 @@ array(3) {
 
 所有的数据在内存上都是相邻的。
 
-![alt](/content/images/2016/11/hash2.png)
+![alt](/assets/images/hash2.png)
 
 这样做，处理哈希表的迭代器的逻辑就变得相当简单。只需要直接遍历 `arData` 数组即可。遍历内存中相邻的数据，将会极大的利用 CPU 缓存。因为 CPU 缓存能够读取到整个 `arData` 的数据，访问每个元素将在微妙级。
 
@@ -131,7 +132,7 @@ ZVAL_COPY_VALUE(&p->val, pData); /* Copy the value into the bucket's value : add
 
 如下图所示：
 
-![alt](/content/images/2016/11/hash3.png)
+![alt](/assets/images/hash3.png)
 
 因此，在循环数组元素时，需要特殊判断空节点：
 
@@ -160,7 +161,7 @@ for (i=0; i < ht->nTableSize; i++) {
 
 举个例子：如果我插入的键名先是 *foo*，然后是 *bar*，假设 *foo* 哈希后的结果是5，而 *bar* 哈希后的结果是3。如果我们将 *foo* 存在 `arData[5]`，而 *bar* 存在 `arData[3]`，这意味着 *bar* 元素要在 *foo* 元素的前面，这和我们插入的顺序正好是相反的。
 
-![alt](/content/images/2016/11/hash4.png)
+![alt](/assets/images/hash4.png)
 
 所以，当我们通过算法哈希了键名后，我们需要一张 *转换表*，转换表保存了哈希后的结果与实际存储的节点的映射关系。
 
@@ -168,7 +169,7 @@ for (i=0; i < ht->nTableSize; i++) {
 
 以下是有8个元素的哈希表 + 转换表的数据结构：
 
-![alt](/content/images/2016/11/hash5.png)
+![alt](/assets/images/hash5.png)
 
 现在，当我们要访问 *foo* 所指的元素时，通过哈希算法得到值后按照哈希表分配的元素大小做取模，就能得到我们在转换表中存储的节点索引值。
 
@@ -291,7 +292,7 @@ memset(&HT_HASH(ht, (ht)->nTableMask), HT_INVALID_IDX, HT_HASH_SIZE((ht)->nTable
 
 以下是一个延迟初始化的哈希表结构：
 
-![alt](/content/images/2016/11/hash6.png)
+![alt](/assets/images/hash6.png)
 
 ### 哈希表的碎片化、重组和压缩
 
@@ -305,13 +306,13 @@ memset(&HT_HASH(ht, (ht)->nTableMask), HT_INVALID_IDX, HT_HASH_SIZE((ht)->nTable
 
 举个例子来说：
 
-![alt](/content/images/2016/11/hash7.png)
+![alt](/assets/images/hash7.png)
 
 重组 `arData` 可以整合碎片化的数组元素。当哈希表需要被重组时，首先它会自我压缩。当它压缩之后，会计算是否需要扩容，如果需要的话，同样是成倍扩容。如果不需要，数据会被重新分配到已有的节点中。这个算法不会在每次元素被删除时运行，因为需要消耗大量的 CPU 计算。
 
 以下是压缩后的数组：
 
-![alt](/content/images/2016/11/hash8.png)
+![alt](/assets/images/hash8.png)
 
 压缩算法会遍历所有 `arData` 里的元素并且替换原来有值的节点为 *UNDEF*。如下所示：
 
