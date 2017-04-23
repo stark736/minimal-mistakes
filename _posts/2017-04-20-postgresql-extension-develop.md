@@ -2,7 +2,7 @@
 title: PostgreSQL 扩展开发基础教程
 date: "2017-04-20 20:00:00"
 tag: 
-	PostgreSQL
+- PostgreSQL
 ---
 
 由于业务需要，我们实现了解析客户定义的伪代码并计算的功能。所需计算数据大多存储在 PostgreSQL 中，因而我们需要利用 PostgreSQL 函数实现一部分计算。但有时，原生的函数的行为并不完全贴合我们的需求，同时也无法通过函数的组合来达到目的。因此，我们决定扩展 PostgreSQL 的函数。
