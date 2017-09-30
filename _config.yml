@@ -9,7 +9,7 @@ minimal_mistakes_skin    : "contrast" # "air", "contrast", "dark", "dirt", "mint
 
 # Site Settings
 locale                   : "zh-CN"
-title                    : "艾莉娅的猫🐱"
+title                    : "艾莉亚的猫"
 title_separator          : "-"
 name                     : "Aliya Stark"
 description              : "可爱又迷人的反派角色."
@@ -81,8 +81,8 @@ analytics:
 author:
   name             : "Aliya Stark"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Winter is coming."
-  location         : "Hangzhou China"
+  bio              : "In me the cat sniffs the rose."
+  location         : "Hangzhou"
   email            : "jiangzheahu@126.com"
   uri              :
   bitbucket        :
@@ -91,7 +91,7 @@ author:
   flickr           :
   facebook         :
   foursquare       :
-  github           : "https://github.com/yangtze736"
+  github           : "stark736"
   gitlab           :
   google_plus      :
   keybase          :
