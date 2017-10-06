@@ -80,7 +80,7 @@ analytics:
 # Site Author
 author:
   name             : "Aliya Stark"
-  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : "/assets/images/yangtze.png"
   bio              : "In me the cat sniffs the rose."
   location         : "Hangzhou"
   email            : "jiangzheahu@126.com"
